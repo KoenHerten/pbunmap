@@ -31,11 +31,15 @@ python pbunmap.py -h
 
 positional arguments:
 
+| file | description |
+| --- | --- |
 | readfile | The fastq or fasta file with the raw data |
 | samfile | The mapped data of the readfile |
 
 optional arguments:
 
+| option | description |
+| --- | --- |
 | -h, --help | show this help message and exit |
 | -v, --verbose | |
 | -fasta, --isfasta | The read file is a fasta file (else fastq file) |
