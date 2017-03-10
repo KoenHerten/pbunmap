@@ -45,7 +45,7 @@ class FastxFile:
     def isfasta(self):
         return self._isfasta
         
-    def nextFasta(self):
+    def nextFastx(self):
         return self._file.nextFasta()
     
     def close(self):

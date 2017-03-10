@@ -143,6 +143,34 @@ class SamRead:
             r= "0{}".format(r)
             i = i+1
         return r
+        
+    def supplementaryToPrimary(self):
+        '''
+        function change supplementary to primary
+        '''
+        if (self.issupplementary()):
+            flag = self.flag - 2048
+            self._linearray[1] = flag
+            self._binflag = self._tobin
+            
+    def secondaryToPrimary(self):
+        '''
+        function change secondary to primary
+        '''
+        if (self.isSecondaryAlignment()):
+            flag = self.flag - 256
+            self._linearray[1] = flag
+            self._binflag = self._tobin
+            
+    
+    def primaryToSupplementary(self):
+        '''
+        function change secondary to primary
+        '''
+        if (not self.issupplementary()):
+            flag = self.flag + 2048
+            self._linearray[1] = flag
+            self._binflag = self._tobin
             
     def ispair(self):
         '''
@@ -221,7 +249,7 @@ class SamRead:
         binflag = str(self._binflag)
         return (int(binflag[-11]) == 1)
         
-    def issuplementary(self):
+    def issupplementary(self):
         '''
         function returns True if this read failed
         '''
@@ -512,3 +540,4 @@ class SamRead:
         self._linearray[6] = "*"
         self._linearray[7] = "0"
         self._linearray[8] = "0"
+        

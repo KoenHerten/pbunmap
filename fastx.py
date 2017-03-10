@@ -30,6 +30,34 @@ along with pbunmap.  If not, see <http://www.gnu.org/licenses/>.
 
 import sys
 
+class FastxRead:
+    
+    def __init__(self, fastx, isfasta):
+        self._name = fastx.name
+        self._sequence = fastx.sequence
+        if isfasta:
+            #fasta
+            self._quality = ""
+        else:
+            self._quality = fastx.quality
+        
+    @property
+    def name(self):
+        return str(self._name)
+        
+    @property
+    def sequence(self):
+        return str(self._sequence)
+        
+    @property
+    def quality(self):
+        return str(self._quality)
+        
+    @property
+    def sequenceLength(self):
+        return len(str(self._sequence))
+            
+
 class FastqRead:
     
     def __init__(self, queryname, sequence, plus, quality):
@@ -57,7 +85,7 @@ class FastqRead:
         
     @property
     def quality(self):
-        return str(self._sequence)
+        return str(self._quality)
         
     @property
     def sequenceLength(self):

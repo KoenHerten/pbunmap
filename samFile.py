@@ -38,6 +38,7 @@ class SamFile:
         self._file = open(file_name)
         self._isccs = isCCS
         self._samread = None
+        self._readset = None
         
     def nextSamRead(self):
         line = self._file.readline()
@@ -60,6 +61,21 @@ class SamFile:
             samread = self.nextSamRead()
         self._samread = samread
         return samread
+        
+    def nextReadSet(self):
+        self._readset = []
+        if self._samread is not None:
+            self._readset.append(self._samread)
+        newread = self.nextSamRead()
+        if self._samread is None:
+            self._samread = newread
+        while (newread is not None and newread.qname == self._samread.qname):
+            self._readset.append(newread)
+            newread = self.nextSamRead()
+        self._samread = newread
+        if len(self._readset) == 0:
+            return None
+        return self._readset
         
     def getCurrentSamRead(self):
         return self._samread
