@@ -44,8 +44,8 @@ if __name__ == '__main__':
     parser.add_argument('-fasta', '--isfasta', action="store_true", dest="isfasta", help="The read file is a fasta file (else fastq file)")
     parser.add_argument('readfile', help="The fastq or fasta file with the raw data")
     parser.add_argument('-ccs', '--ccs', action="store_true", help="These are PacBio CCS reads (fastq description should end with ccs (some mappers add extra numbers, these are removed to get the original query name))")
-    parser.add_argument('-l', '--length', help="The minimum length of a mapped fragment", default=200, type=int)
-    parser.add_argument('-p', '--percent', help="The percentage of the raw read that has to be mapped to the reference (between 0-1)", default=0.5, type=float)
+    parser.add_argument('-l', '--length', help="The minimum length of a mapped fragment (default: 200)", default=200, type=int)
+    parser.add_argument('-p', '--percent', help="The percentage of the raw read that has to be mapped to the reference (between 0-1) (default 0.5)", default=0.5, type=float)
     parser.add_argument('-ns', '--not-correct-supplementary', dest="noSupCorrection", help="If there are supplementary reads passing the filter, do not correct the primary", action="store_true")
     parser.add_argument('samfile', help="The mapped data of the readfile")
     
@@ -99,44 +99,6 @@ if __name__ == '__main__':
     
     if (args.verbose):
         eprint("Processed {} reads in the read file".format(fasta_count))
-        
-#    #go over sam file, and correct
-#    samfile = samFile.SamFile(args.samfile, args.ccs)
-#    
-#    samread = samfile.nextSamRead()
-#    
-#    sam_count = 0
-#    previous_samread = None
-#    second_count = 0
-#    suplement_count = 0
-#    toshort = 0
-#    while (samread is not None):
-#        sam_count = sam_count + 1
-#        if (args.verbose and sam_count%100==0):
-#            eprint("mapped processed: {}".format(sam_count))
-#        #print(samread.line)
-#        raw_length = read_length_dict[samread.qname]
-#        if (raw_length is not None or raw_length is not ""):
-#            #fragment found
-#            mapped_length = samread.getMappedLength()
-#            #check length
-#            if (samread.isSecondaryAlignment()):
-#                #is a secondary alignment
-#                #print("SECONDARY")
-#                second_count = second_count +1
-#                samread.changeToUnmapped()
-#            if (samread.issuplementary()):
-#                #is mapped to multiple places
-#                suplement_count = suplement_count + 1
-#            if ((mapped_length < args.length) or mapped_length < (raw_length * args.percent)):
-#                #print("TO SHORT")
-#                toshort = toshort + 1
-#                samread.changeToUnmapped()
-#        #print(samread.line)
-#        previous_samread = samread
-#        samread = samfile.nextSamRead()
-#    
-#    samfile.close()
     
     #go over sam file and correct
     
