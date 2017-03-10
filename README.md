@@ -30,15 +30,15 @@ python pbunmap.py -h
 ```
 
 positional arguments:
-*  readfile              The fastq or fasta file with the raw data
-*  samfile               The mapped data of the readfile
+| readfile | The fastq or fasta file with the raw data |
+| samfile | The mapped data of the readfile |
 
 optional arguments:
-*  -h, --help            show this help message and exit
-*  -v, --verbose
-*  -fasta, --isfasta     The read file is a fasta file (else fastq file)
-*  -ccs, --ccs           These are PacBio CCS reads (fastq description should end with ccs (some mappers add extra numbers, these are removed to get the original query name))
-*  -l LENGTH, --length LENGTH        The minimum length of a mapped fragment (default: 200)
-*  -p PERCENT, --percent PERCENT        The percentage of the raw read that has to be mapped to the reference (between 0-1) (default: 0.5)
-*  -ns, --not-correct-supplementary         If there are supplementary reads passing the filter, do not correct the primary
+| -h, --help | show this help message and exit |
+| -v, --verbose | |
+| -fasta, --isfasta | The read file is a fasta file (else fastq file) |
+| -ccs, --ccs | These are PacBio CCS reads (fastq description should end with ccs (some mappers add extra numbers, these are removed to get the original query name)) |
+| -l LENGTH, --length LENGTH | The minimum length of a mapped fragment (default: 200) |
+| -p PERCENT, --percent PERCENT | The percentage of the raw read that has to be mapped to the reference (between 0-1) (default: 0.5) |
+| -ns, --not-correct-supplementary | If there are supplementary reads passing the filter, do not correct the primary |
 
